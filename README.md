@@ -17,8 +17,6 @@ branch = "master"
 
 ```rust
 extern crate jubatus;
-
-use jubatus::client;
 ```
 
 ## Example
@@ -33,7 +31,7 @@ fn main() {
     let name = "test";
 
     let mut client = ClassifierClient::new(host, name);
-    println!("{:?}", client.get_config());
+    println!("config:\n{}", client.get_config());
 }
 ```
 
