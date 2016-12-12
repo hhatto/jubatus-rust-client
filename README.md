@@ -11,7 +11,7 @@ Cargo.toml:
 
 ```toml
 [dependencies.jubatus]
-git = "htps://github.com/hhatto/jubatus-rust-client.git"
+git = "https://github.com/hhatto/jubatus-rust-client.git"
 branch = "master"
 ```
 
