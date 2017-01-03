@@ -1,4 +1,4 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -26,8 +26,8 @@ impl KeywordWithParams {
         let s = data.as_array().unwrap();
         KeywordWithParams {
             keyword: s[0].as_str().unwrap().to_string(),
-            scaling_param: s[0].as_f64().unwrap(),
-            gamma: s[0].as_f64().unwrap(),
+            scaling_param: s[1].as_f64().unwrap(),
+            gamma: s[2].as_f64().unwrap(),
         }
     }
 }
@@ -75,7 +75,11 @@ impl Window {
         let s = data.as_array().unwrap();
         Window {
             start_pos: s[0].as_f64().unwrap(),
-            batches: s[1].as_array().unwrap().iter().map(|x| Batch::from_msgpack_value(x)).collect(),
+            batches: s[1].as_array()
+                .unwrap()
+                .iter()
+                .map(|x| Batch::from_msgpack_value(x.clone()))
+                .collect(),
         }
     }
 }

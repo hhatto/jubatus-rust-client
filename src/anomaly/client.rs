@@ -1,4 +1,4 @@
-// This file is auto-generated from anomaly.idl(0.9.0-26-g051b3019) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from anomaly.idl(0.9.0-26-g051b3019) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -25,42 +25,42 @@ impl<'a> AnomalyClient<'a> {
         let args: Vec<Value> = vec![Value::String(id.to_owned())];
         let result = self.client.call("clear_row", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn add(&mut self, row: Datum) -> IdWithScore {
         let args: Vec<Value> = vec![row.to_msgpack_value()];
         let result = self.client.call("add", args);
         let ret = IdWithScore::from_msgpack_value(result.clone());
-        return ret;
+        ret
     }
 
     pub fn update(&mut self, id: String, row: Datum) -> f64 {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("update", args);
         let ret = result.as_f64().unwrap();
-        return ret;
+        ret
     }
 
     pub fn overwrite(&mut self, id: String, row: Datum) -> f64 {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("overwrite", args);
         let ret = result.as_f64().unwrap();
-        return ret;
+        ret
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn calc_score(&mut self, row: Datum) -> f64 {
         let args: Vec<Value> = vec![row.to_msgpack_value()];
         let result = self.client.call("calc_score", args);
         let ret = result.as_f64().unwrap();
-        return ret;
+        ret
     }
 
     pub fn get_all_rows(&mut self) -> Vec<String> {
@@ -75,7 +75,7 @@ impl<'a> AnomalyClient<'a> {
                     .to_string()
             })
             .collect();
-        return ret;
+        ret
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

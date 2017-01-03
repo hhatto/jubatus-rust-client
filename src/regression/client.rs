@@ -1,4 +1,4 @@
-// This file is auto-generated from regression.idl(0.6.4-33-gcc8d7ca9) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from regression.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -27,7 +27,7 @@ impl<'a> RegressionClient<'a> {
                                         .collect())];
         let result = self.client.call("train", args);
         let ret = result.as_i64().unwrap();
-        return ret;
+        ret
     }
 
     pub fn estimate(&mut self, estimate_data: Vec<Datum>) -> Vec<f64> {
@@ -40,14 +40,14 @@ impl<'a> RegressionClient<'a> {
             .iter()
             .map(|x| x.as_f64().unwrap())
             .collect();
-        return ret;
+        ret
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

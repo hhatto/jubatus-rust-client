@@ -1,4 +1,4 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -27,41 +27,43 @@ impl<'a> BurstClient<'a> {
                                         .collect())];
         let result = self.client.call("add_documents", args);
         let ret = result.as_i64().unwrap();
-        return ret;
+        ret
     }
 
     pub fn get_result(&mut self, keyword: String) -> Window {
         let args: Vec<Value> = vec![Value::String(keyword.to_owned())];
         let result = self.client.call("get_result", args);
         let ret = Window::from_msgpack_value(result.clone());
-        return ret;
+        ret
     }
 
     pub fn get_result_at(&mut self, keyword: String, pos: f64) -> Window {
         let args: Vec<Value> = vec![Value::String(keyword.to_owned()), Value::Float(Float::F64(pos))];
         let result = self.client.call("get_result_at", args);
         let ret = Window::from_msgpack_value(result.clone());
-        return ret;
+        ret
     }
 
     pub fn get_all_bursted_results(&mut self) -> HashMap<String, Window> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_bursted_results", args);
-        let ret = result.as_map().unwrap().iter().map(|m| {
+        let mut h: HashMap<String, Window> = HashMap::new();
+        result.as_map().unwrap().iter().map(|m| {
             let (ref k, ref v): (Value, Value) = *m;
             h.insert(k.as_str().unwrap().to_string(), Window::from_msgpack_value(v.clone()))
         });
-        return ret;
+        h
     }
 
     pub fn get_all_bursted_results_at(&mut self, pos: f64) -> HashMap<String, Window> {
         let args: Vec<Value> = vec![Value::Float(Float::F64(pos))];
         let result = self.client.call("get_all_bursted_results_at", args);
-        let ret = result.as_map().unwrap().iter().map(|m| {
+        let mut h: HashMap<String, Window> = HashMap::new();
+        result.as_map().unwrap().iter().map(|m| {
             let (ref k, ref v): (Value, Value) = *m;
             h.insert(k.as_str().unwrap().to_string(), Window::from_msgpack_value(v.clone()))
         });
-        return ret;
+        h
     }
 
     pub fn get_all_keywords(&mut self) -> Vec<KeywordWithParams> {
@@ -72,35 +74,35 @@ impl<'a> BurstClient<'a> {
             .iter()
             .map(|x| KeywordWithParams::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn add_keyword(&mut self, keyword: KeywordWithParams) -> bool {
         let args: Vec<Value> = vec![keyword.to_msgpack_value()];
         let result = self.client.call("add_keyword", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn remove_keyword(&mut self, keyword: String) -> bool {
         let args: Vec<Value> = vec![Value::String(keyword.to_owned())];
         let result = self.client.call("remove_keyword", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn remove_all_keywords(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("remove_all_keywords", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

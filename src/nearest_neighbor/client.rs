@@ -1,4 +1,4 @@
-// This file is auto-generated from nearest_neighbor.idl(0.8.2-20-g8e4dc3b5) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from nearest_neighbor.idl(0.8.2-20-g8e4dc3b5) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -25,14 +25,14 @@ impl<'a> NearestNeighborClient<'a> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn set_row(&mut self, id: String, d: Datum) -> bool {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), d.to_msgpack_value()];
         let result = self.client.call("set_row", args);
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn neighbor_row_from_id(&mut self, id: String, size: u64) -> Vec<IdWithScore> {
@@ -43,7 +43,7 @@ impl<'a> NearestNeighborClient<'a> {
             .iter()
             .map(|x| IdWithScore::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn neighbor_row_from_datum(&mut self, query: Datum, size: u64) -> Vec<IdWithScore> {
@@ -54,7 +54,7 @@ impl<'a> NearestNeighborClient<'a> {
             .iter()
             .map(|x| IdWithScore::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn similar_row_from_id(&mut self, id: String, ret_num: u64) -> Vec<IdWithScore> {
@@ -65,7 +65,7 @@ impl<'a> NearestNeighborClient<'a> {
             .iter()
             .map(|x| IdWithScore::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn similar_row_from_datum(&mut self, query: Datum, ret_num: u64) -> Vec<IdWithScore> {
@@ -76,7 +76,7 @@ impl<'a> NearestNeighborClient<'a> {
             .iter()
             .map(|x| IdWithScore::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn get_all_rows(&mut self) -> Vec<String> {
@@ -91,7 +91,7 @@ impl<'a> NearestNeighborClient<'a> {
                     .to_string()
             })
             .collect();
-        return ret;
+        ret
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
