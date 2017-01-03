@@ -1,4 +1,4 @@
-// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -19,36 +19,45 @@ impl Node {
     pub fn to_msgpack_value(&self) -> Value {
         Value::Array(vec![Value::Map(self.property
                               .iter()
-                              .map(|k, v| (Value::String(k.to_owned()), Value::String(v.to_owned())))
+                              .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
                               .collect()),
                           Value::Array(self.in_edges
                               .iter()
-                              .map(|x| Value::Integer(Integer::U64(x)))
+                              .map(|x| Value::Integer(Integer::U64(*x)))
                               .collect()),
                           Value::Array(self.out_edges
                               .iter()
-                              .map(|x| Value::Integer(Integer::U64(x)))
+                              .map(|x| Value::Integer(Integer::U64(*x)))
                               .collect())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Node {
         let s = data.as_array().unwrap();
         Node {
-            property: s[0].as_map().unwrap().iter().map(|k, v| {
-                h.insert(k.as_str()
-                             .unwrap()
-                             .to_string(),
-                         v.as_str().unwrap().to_string())
-            }),
+            property: s[0].as_map()
+                .unwrap()
+                .iter()
+                .map(|m| {
+                    let (ref k, ref v): (Value, Value) = *m;
+                    (k.as_str().unwrap().to_string(),
+                     v.as_str()
+                        .unwrap()
+                        .to_string())
+                })
+                .collect::<HashMap<String, String>>(),
             in_edges: s[1].as_array()
                 .unwrap()
                 .iter()
-                .map(|x| x.as_u64().unwrap())
+                .map(|x| x.clone().as_u64().unwrap())
                 .collect(),
             out_edges: s[2].as_array()
                 .unwrap()
                 .iter()
-                .map(|x| x.as_u64().unwrap())
+                .map(|x| {
+                    x.clone()
+                        .as_u64()
+                        .unwrap()
+                })
                 .collect(),
         }
     }
@@ -95,12 +104,12 @@ impl PresetQuery {
             edge_query: s[0].as_array()
                 .unwrap()
                 .iter()
-                .map(|x| Query::from_msgpack_value(x))
+                .map(|x| Query::from_msgpack_value(x.clone().clone()))
                 .collect(),
             node_query: s[1].as_array()
                 .unwrap()
                 .iter()
-                .map(|x| Query::from_msgpack_value(x))
+                .map(|x| Query::from_msgpack_value(x.clone().clone()))
                 .collect(),
         }
     }
@@ -117,7 +126,7 @@ impl Edge {
     pub fn to_msgpack_value(&self) -> Value {
         Value::Array(vec![Value::Map(self.property
                               .iter()
-                              .map(|k, v| (Value::String(k.to_owned()), Value::String(v.to_owned())))
+                              .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
                               .collect()),
                           Value::String(self.source.to_owned()),
                           Value::String(self.target.to_owned())])
@@ -125,16 +134,18 @@ impl Edge {
 
     pub fn from_msgpack_value(data: Value) -> Edge {
         let s = data.as_array().unwrap();
-        let h: HashMap<String, String> = HashMap::new();
-        let _ = s[0].as_map().unwrap().iter().map(|m| {
-            let (ref k, ref v) = *m;
-            h.insert(k.as_str()
-                         .unwrap()
-                         .to_string(),
-                     v.as_str().unwrap().to_string())
-        });
         Edge {
-            property: h,
+            property: s[0].as_map()
+                .unwrap()
+                .iter()
+                .map(|m| {
+                    let (ref k, ref v): (Value, Value) = *m;
+                    (k.as_str().unwrap().to_string(),
+                     v.as_str()
+                        .unwrap()
+                        .to_string())
+                })
+                .collect::<HashMap<String, String>>(),
             source: s[1].as_str().unwrap().to_string(),
             target: s[2].as_str().unwrap().to_string(),
         }
@@ -163,7 +174,7 @@ impl ShortestPathQuery {
             source: s[0].as_str().unwrap().to_string(),
             target: s[1].as_str().unwrap().to_string(),
             max_hop: s[2].as_u64().unwrap(),
-            query: PresetQuery::from_msgpack_value(s[3]),
+            query: PresetQuery::from_msgpack_value(s[3].clone()),
         }
     }
 }

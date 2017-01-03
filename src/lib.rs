@@ -4,8 +4,17 @@ extern crate rmp_serialize;
 extern crate rustc_serialize;
 
 pub mod common;
+pub mod anomaly;
+pub mod bandit;
+pub mod burst;
 pub mod classifier;
+pub mod clustering;
+pub mod graph;
+pub mod nearest_neighbor;
 pub mod recommender;
+pub mod regression;
+pub mod stat;
+pub mod weight;
 
 #[cfg(test)]
 mod tests {

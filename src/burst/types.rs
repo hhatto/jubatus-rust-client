@@ -78,7 +78,7 @@ impl Window {
             batches: s[1].as_array()
                 .unwrap()
                 .iter()
-                .map(|x| Batch::from_msgpack_value(x.clone()))
+                .map(|x| Batch::from_msgpack_value(x.clone().clone()))
                 .collect(),
         }
     }
