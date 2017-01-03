@@ -1,4 +1,4 @@
-// This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
+// This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -23,61 +23,51 @@ impl<'a> BanditClient<'a> {
     pub fn register_arm(&mut self, arm_id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(arm_id.to_owned())];
         let result = self.client.call("register_arm", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn delete_arm(&mut self, arm_id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(arm_id.to_owned())];
         let result = self.client.call("delete_arm", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn select_arm(&mut self, player_id: String) -> String {
         let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
         let result = self.client.call("select_arm", args);
-
-        let ret = result.as_str().unwrap().to_string();
-        ret
+        result.as_str().unwrap().to_string()
     }
 
     pub fn register_reward(&mut self, player_id: String, arm_id: String, reward: f64) -> bool {
         let args: Vec<Value> =
             vec![Value::String(player_id.to_owned()), Value::String(arm_id.to_owned()), Value::Float(Float::F64(reward))];
         let result = self.client.call("register_reward", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn get_arm_info(&mut self, player_id: String) -> HashMap<String, ArmInfo> {
         let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
         let result = self.client.call("get_arm_info", args);
-        let mut h: HashMap<String, ArmInfo> = HashMap::new();
-        result.as_map().unwrap().iter().map(|m| {
-            let (ref k, ref v): (Value, Value) = *m;
-            h.insert(k.as_str().unwrap().to_string(), ArmInfo::from_msgpack_value(v.clone()))
-        });
-        h
+        result.as_map()
+            .unwrap()
+            .iter()
+            .map(|m| {
+                let (ref k, ref v): (Value, Value) = *m;
+                (k.as_str().unwrap().to_string(), ArmInfo::from_msgpack_value(v.clone()))
+            })
+            .collect::<HashMap<String, ArmInfo>>()
     }
 
     pub fn reset(&mut self, player_id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
         let result = self.client.call("reset", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

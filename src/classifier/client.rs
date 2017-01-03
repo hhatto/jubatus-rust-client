@@ -1,4 +1,4 @@
-// This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
+// This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -25,9 +25,7 @@ impl<'a> ClassifierClient<'a> {
                                         .map(|x| x.to_msgpack_value())
                                         .collect())];
         let result = self.client.call("train", args);
-
-        let ret = result.as_i64().unwrap();
-        ret
+        result.as_i64().unwrap()
     }
 
     pub fn classify(&mut self, data: Vec<Datum>) -> Vec<Vec<EstimateResult>> {
@@ -35,8 +33,7 @@ impl<'a> ClassifierClient<'a> {
                                         .map(|x| x.to_msgpack_value())
                                         .collect())];
         let result = self.client.call("classify", args);
-
-        let ret = result.as_array()
+        result.as_array()
             .unwrap()
             .iter()
             .map(|x| {
@@ -46,43 +43,38 @@ impl<'a> ClassifierClient<'a> {
                     .map(|x| EstimateResult::from_msgpack_value(x.clone()))
                     .collect()
             })
-            .collect();
-        ret
+            .collect()
     }
 
     pub fn get_labels(&mut self) -> HashMap<String, u64> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_labels", args);
-        let mut h: HashMap<String, u64> = HashMap::new();
-        result.as_map().unwrap().iter().map(|m| {
-            let (ref k, ref v): (Value, Value) = *m;
-            h.insert(k.as_str().unwrap().to_string(), v.as_u64().unwrap())
-        });
-        h
+        result.as_map()
+            .unwrap()
+            .iter()
+            .map(|m| {
+                let (ref k, ref v): (Value, Value) = *m;
+                (k.as_str().unwrap().to_string(), v.as_u64().unwrap())
+            })
+            .collect::<HashMap<String, u64>>()
     }
 
     pub fn set_label(&mut self, new_label: String) -> bool {
         let args: Vec<Value> = vec![Value::String(new_label.to_owned())];
         let result = self.client.call("set_label", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn delete_label(&mut self, target_label: String) -> bool {
         let args: Vec<Value> = vec![Value::String(target_label.to_owned())];
         let result = self.client.call("delete_label", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

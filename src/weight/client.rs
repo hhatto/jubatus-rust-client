@@ -1,4 +1,4 @@
-// This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
+// This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -23,33 +23,27 @@ impl<'a> WeightClient<'a> {
     pub fn update(&mut self, d: Datum) -> Vec<Feature> {
         let args: Vec<Value> = vec![d.to_msgpack_value()];
         let result = self.client.call("update", args);
-
-        let ret = result.as_array()
+        result.as_array()
             .unwrap()
             .iter()
             .map(|x| Feature::from_msgpack_value(x.clone()))
-            .collect();
-        ret
+            .collect()
     }
 
     pub fn calc_weight(&mut self, d: Datum) -> Vec<Feature> {
         let args: Vec<Value> = vec![d.to_msgpack_value()];
         let result = self.client.call("calc_weight", args);
-
-        let ret = result.as_array()
+        result.as_array()
             .unwrap()
             .iter()
             .map(|x| Feature::from_msgpack_value(x.clone()))
-            .collect();
-        ret
+            .collect()
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

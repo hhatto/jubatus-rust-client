@@ -1,4 +1,4 @@
-// This file is auto-generated from recommender.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
+// This file is auto-generated from recommender.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -23,105 +23,79 @@ impl<'a> RecommenderClient<'a> {
     pub fn clear_row(&mut self, id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(id.to_owned())];
         let result = self.client.call("clear_row", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn update_row(&mut self, id: String, row: Datum) -> bool {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("update_row", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
-
-        let ret = result.as_bool().unwrap();
-        ret
+        result.as_bool().unwrap()
     }
 
     pub fn complete_row_from_id(&mut self, id: String) -> Datum {
         let args: Vec<Value> = vec![Value::String(id.to_owned())];
         let result = self.client.call("complete_row_from_id", args);
-
-        let ret = Datum::from_msgpack_value(result.clone());
-        ret
+        Datum::from_msgpack_value(result.clone())
     }
 
     pub fn complete_row_from_datum(&mut self, row: Datum) -> Datum {
         let args: Vec<Value> = vec![row.to_msgpack_value()];
         let result = self.client.call("complete_row_from_datum", args);
-
-        let ret = Datum::from_msgpack_value(result.clone());
-        ret
+        Datum::from_msgpack_value(result.clone())
     }
 
     pub fn similar_row_from_id(&mut self, id: String, size: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::Integer(Integer::U64(size))];
         let result = self.client.call("similar_row_from_id", args);
-
-        let ret = result.as_array()
+        result.as_array()
             .unwrap()
             .iter()
             .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect();
-        ret
+            .collect()
     }
 
     pub fn similar_row_from_datum(&mut self, row: Datum, size: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![row.to_msgpack_value(), Value::Integer(Integer::U64(size))];
         let result = self.client.call("similar_row_from_datum", args);
-
-        let ret = result.as_array()
+        result.as_array()
             .unwrap()
             .iter()
             .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect();
-        ret
+            .collect()
     }
 
     pub fn decode_row(&mut self, id: String) -> Datum {
         let args: Vec<Value> = vec![Value::String(id.to_owned())];
         let result = self.client.call("decode_row", args);
-
-        let ret = Datum::from_msgpack_value(result.clone());
-        ret
+        Datum::from_msgpack_value(result.clone())
     }
 
     pub fn get_all_rows(&mut self) -> Vec<String> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_rows", args);
-
-        let ret = result.as_array()
+        result.as_array()
             .unwrap()
             .iter()
-            .map(|x| {
-                x.as_str()
-                    .unwrap()
-                    .to_string()
-            })
-            .collect();
-        ret
+            .map(|x| x.as_str().unwrap().to_string())
+            .collect()
     }
 
     pub fn calc_similarity(&mut self, lhs: Datum, rhs: Datum) -> f64 {
         let args: Vec<Value> = vec![lhs.to_msgpack_value(), rhs.to_msgpack_value()];
         let result = self.client.call("calc_similarity", args);
-
-        let ret = result.as_f64().unwrap();
-        ret
+        result.as_f64().unwrap()
     }
 
     pub fn calc_l2norm(&mut self, row: Datum) -> f64 {
         let args: Vec<Value> = vec![row.to_msgpack_value()];
         let result = self.client.call("calc_l2norm", args);
-
-        let ret = result.as_f64().unwrap();
-        ret
+        result.as_f64().unwrap()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
