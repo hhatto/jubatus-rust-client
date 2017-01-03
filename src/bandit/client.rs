@@ -24,6 +24,7 @@ impl<'a> BanditClient<'a> {
     pub fn register_arm(&mut self, arm_id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(arm_id.to_owned())];
         let result = self.client.call("register_arm", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -31,6 +32,7 @@ impl<'a> BanditClient<'a> {
     pub fn delete_arm(&mut self, arm_id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(arm_id.to_owned())];
         let result = self.client.call("delete_arm", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -38,6 +40,7 @@ impl<'a> BanditClient<'a> {
     pub fn select_arm(&mut self, player_id: String) -> String {
         let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
         let result = self.client.call("select_arm", args);
+
         let ret = result.as_str().unwrap().to_string();
         ret
     }
@@ -46,6 +49,7 @@ impl<'a> BanditClient<'a> {
         let args: Vec<Value> =
             vec![Value::String(player_id.to_owned()), Value::String(arm_id.to_owned()), Value::Float(Float::F64(reward))];
         let result = self.client.call("register_reward", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -64,6 +68,7 @@ impl<'a> BanditClient<'a> {
     pub fn reset(&mut self, player_id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
         let result = self.client.call("reset", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -71,6 +76,7 @@ impl<'a> BanditClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }

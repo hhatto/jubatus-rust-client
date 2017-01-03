@@ -24,6 +24,7 @@ impl<'a> StatClient<'a> {
     pub fn push(&mut self, key: String, value: f64) -> bool {
         let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::Float(Float::F64(value))];
         let result = self.client.call("push", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -31,6 +32,7 @@ impl<'a> StatClient<'a> {
     pub fn sum(&mut self, key: String) -> f64 {
         let args: Vec<Value> = vec![Value::String(key.to_owned())];
         let result = self.client.call("sum", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -38,6 +40,7 @@ impl<'a> StatClient<'a> {
     pub fn stddev(&mut self, key: String) -> f64 {
         let args: Vec<Value> = vec![Value::String(key.to_owned())];
         let result = self.client.call("stddev", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -45,6 +48,7 @@ impl<'a> StatClient<'a> {
     pub fn max(&mut self, key: String) -> f64 {
         let args: Vec<Value> = vec![Value::String(key.to_owned())];
         let result = self.client.call("max", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -52,6 +56,7 @@ impl<'a> StatClient<'a> {
     pub fn min(&mut self, key: String) -> f64 {
         let args: Vec<Value> = vec![Value::String(key.to_owned())];
         let result = self.client.call("min", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -59,6 +64,7 @@ impl<'a> StatClient<'a> {
     pub fn entropy(&mut self, key: String) -> f64 {
         let args: Vec<Value> = vec![Value::String(key.to_owned())];
         let result = self.client.call("entropy", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -66,6 +72,7 @@ impl<'a> StatClient<'a> {
     pub fn moment(&mut self, key: String, degree: i64, center: f64) -> f64 {
         let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::Integer(Integer::I64(degree)), Value::Float(Float::F64(center))];
         let result = self.client.call("moment", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -73,6 +80,7 @@ impl<'a> StatClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }

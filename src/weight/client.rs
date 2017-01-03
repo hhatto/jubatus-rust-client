@@ -24,6 +24,7 @@ impl<'a> WeightClient<'a> {
     pub fn update(&mut self, d: Datum) -> Vec<Feature> {
         let args: Vec<Value> = vec![d.to_msgpack_value()];
         let result = self.client.call("update", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -35,6 +36,7 @@ impl<'a> WeightClient<'a> {
     pub fn calc_weight(&mut self, d: Datum) -> Vec<Feature> {
         let args: Vec<Value> = vec![d.to_msgpack_value()];
         let result = self.client.call("calc_weight", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -46,6 +48,7 @@ impl<'a> WeightClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }

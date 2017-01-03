@@ -26,6 +26,7 @@ impl<'a> BurstClient<'a> {
                                         .map(|x| x.to_msgpack_value())
                                         .collect())];
         let result = self.client.call("add_documents", args);
+
         let ret = result.as_i64().unwrap();
         ret
     }
@@ -33,6 +34,7 @@ impl<'a> BurstClient<'a> {
     pub fn get_result(&mut self, keyword: String) -> Window {
         let args: Vec<Value> = vec![Value::String(keyword.to_owned())];
         let result = self.client.call("get_result", args);
+
         let ret = Window::from_msgpack_value(result.clone());
         ret
     }
@@ -40,6 +42,7 @@ impl<'a> BurstClient<'a> {
     pub fn get_result_at(&mut self, keyword: String, pos: f64) -> Window {
         let args: Vec<Value> = vec![Value::String(keyword.to_owned()), Value::Float(Float::F64(pos))];
         let result = self.client.call("get_result_at", args);
+
         let ret = Window::from_msgpack_value(result.clone());
         ret
     }
@@ -69,6 +72,7 @@ impl<'a> BurstClient<'a> {
     pub fn get_all_keywords(&mut self) -> Vec<KeywordWithParams> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_keywords", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -80,6 +84,7 @@ impl<'a> BurstClient<'a> {
     pub fn add_keyword(&mut self, keyword: KeywordWithParams) -> bool {
         let args: Vec<Value> = vec![keyword.to_msgpack_value()];
         let result = self.client.call("add_keyword", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -87,6 +92,7 @@ impl<'a> BurstClient<'a> {
     pub fn remove_keyword(&mut self, keyword: String) -> bool {
         let args: Vec<Value> = vec![Value::String(keyword.to_owned())];
         let result = self.client.call("remove_keyword", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -94,6 +100,7 @@ impl<'a> BurstClient<'a> {
     pub fn remove_all_keywords(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("remove_all_keywords", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -101,6 +108,7 @@ impl<'a> BurstClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }

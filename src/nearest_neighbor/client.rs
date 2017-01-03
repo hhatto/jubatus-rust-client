@@ -24,6 +24,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -31,6 +32,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn set_row(&mut self, id: String, d: Datum) -> bool {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), d.to_msgpack_value()];
         let result = self.client.call("set_row", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -38,6 +40,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn neighbor_row_from_id(&mut self, id: String, size: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::Integer(Integer::U64(size))];
         let result = self.client.call("neighbor_row_from_id", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -49,6 +52,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn neighbor_row_from_datum(&mut self, query: Datum, size: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![query.to_msgpack_value(), Value::Integer(Integer::U64(size))];
         let result = self.client.call("neighbor_row_from_datum", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -60,6 +64,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn similar_row_from_id(&mut self, id: String, ret_num: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::Integer(Integer::U64(ret_num))];
         let result = self.client.call("similar_row_from_id", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -71,6 +76,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn similar_row_from_datum(&mut self, query: Datum, ret_num: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![query.to_msgpack_value(), Value::Integer(Integer::U64(ret_num))];
         let result = self.client.call("similar_row_from_datum", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -82,6 +88,7 @@ impl<'a> NearestNeighborClient<'a> {
     pub fn get_all_rows(&mut self) -> Vec<String> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_rows", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()

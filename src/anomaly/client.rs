@@ -24,6 +24,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn clear_row(&mut self, id: String) -> bool {
         let args: Vec<Value> = vec![Value::String(id.to_owned())];
         let result = self.client.call("clear_row", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -31,6 +32,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn add(&mut self, row: Datum) -> IdWithScore {
         let args: Vec<Value> = vec![row.to_msgpack_value()];
         let result = self.client.call("add", args);
+
         let ret = IdWithScore::from_msgpack_value(result.clone());
         ret
     }
@@ -38,6 +40,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn update(&mut self, id: String, row: Datum) -> f64 {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("update", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -45,6 +48,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn overwrite(&mut self, id: String, row: Datum) -> f64 {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("overwrite", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -52,6 +56,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -59,6 +64,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn calc_score(&mut self, row: Datum) -> f64 {
         let args: Vec<Value> = vec![row.to_msgpack_value()];
         let result = self.client.call("calc_score", args);
+
         let ret = result.as_f64().unwrap();
         ret
     }
@@ -66,6 +72,7 @@ impl<'a> AnomalyClient<'a> {
     pub fn get_all_rows(&mut self) -> Vec<String> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_rows", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()

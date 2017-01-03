@@ -1,4 +1,4 @@
-// This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 0.9.4-42-g70f75391/master
+// This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 1.0.0-6-gebf1c263/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -26,20 +26,23 @@ impl<'a> ClusteringClient<'a> {
                                         .map(|x| x.to_msgpack_value())
                                         .collect())];
         let result = self.client.call("push", args);
+
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn get_revision(&mut self) -> u64 {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_revision", args);
+
         let ret = result.as_u64().unwrap();
-        return ret;
+        ret
     }
 
     pub fn get_core_members(&mut self) -> Vec<Vec<WeightedDatum>> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_core_members", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -51,12 +54,13 @@ impl<'a> ClusteringClient<'a> {
                     .collect()
             })
             .collect();
-        return ret;
+        ret
     }
 
     pub fn get_core_members_light(&mut self) -> Vec<Vec<WeightedIndex>> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_core_members_light", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -68,54 +72,59 @@ impl<'a> ClusteringClient<'a> {
                     .collect()
             })
             .collect();
-        return ret;
+        ret
     }
 
     pub fn get_k_center(&mut self) -> Vec<Datum> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_k_center", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
             .map(|x| Datum::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn get_nearest_center(&mut self, point: Datum) -> Datum {
         let args: Vec<Value> = vec![point.to_msgpack_value()];
         let result = self.client.call("get_nearest_center", args);
+
         let ret = Datum::from_msgpack_value(result.clone());
-        return ret;
+        ret
     }
 
     pub fn get_nearest_members(&mut self, point: Datum) -> Vec<WeightedDatum> {
         let args: Vec<Value> = vec![point.to_msgpack_value()];
         let result = self.client.call("get_nearest_members", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
             .map(|x| WeightedDatum::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn get_nearest_members_light(&mut self, point: Datum) -> Vec<WeightedIndex> {
         let args: Vec<Value> = vec![point.to_msgpack_value()];
         let result = self.client.call("get_nearest_members_light", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
             .map(|x| WeightedIndex::from_msgpack_value(x.clone()))
             .collect();
-        return ret;
+        ret
     }
 
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
-        return ret;
+        ret
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {

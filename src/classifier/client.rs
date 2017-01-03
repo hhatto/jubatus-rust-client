@@ -22,19 +22,31 @@ impl<'a> ClassifierClient<'a> {
     }
 
     pub fn train(&mut self, data: Vec<LabeledDatum>) -> i64 {
-        let args: Vec<Value> = vec![Value::Array(data.iter().map(|x| x.to_msgpack_value()).collect())];
+        let args: Vec<Value> = vec![Value::Array(data.iter()
+                                        .map(|x| x.to_msgpack_value())
+                                        .collect())];
         let result = self.client.call("train", args);
+
         let ret = result.as_i64().unwrap();
         ret
     }
 
     pub fn classify(&mut self, data: Vec<Datum>) -> Vec<Vec<EstimateResult>> {
-        let args: Vec<Value> = vec![Value::Array(data.iter().map(|x| x.to_msgpack_value()).collect())];
+        let args: Vec<Value> = vec![Value::Array(data.iter()
+                                        .map(|x| x.to_msgpack_value())
+                                        .collect())];
         let result = self.client.call("classify", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
-            .map(|x| x.as_array().unwrap().iter().map(|x| EstimateResult::from_msgpack_value(x.clone())).collect())
+            .map(|x| {
+                x.as_array()
+                    .unwrap()
+                    .iter()
+                    .map(|x| EstimateResult::from_msgpack_value(x.clone()))
+                    .collect()
+            })
             .collect();
         ret
     }
@@ -53,6 +65,7 @@ impl<'a> ClassifierClient<'a> {
     pub fn set_label(&mut self, new_label: String) -> bool {
         let args: Vec<Value> = vec![Value::String(new_label.to_owned())];
         let result = self.client.call("set_label", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -60,6 +73,7 @@ impl<'a> ClassifierClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
@@ -67,6 +81,7 @@ impl<'a> ClassifierClient<'a> {
     pub fn delete_label(&mut self, target_label: String) -> bool {
         let args: Vec<Value> = vec![Value::String(target_label.to_owned())];
         let result = self.client.call("delete_label", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }

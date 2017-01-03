@@ -26,6 +26,7 @@ impl<'a> RegressionClient<'a> {
                                         .map(|x| x.to_msgpack_value())
                                         .collect())];
         let result = self.client.call("train", args);
+
         let ret = result.as_i64().unwrap();
         ret
     }
@@ -35,6 +36,7 @@ impl<'a> RegressionClient<'a> {
                                         .map(|x| x.to_msgpack_value())
                                         .collect())];
         let result = self.client.call("estimate", args);
+
         let ret = result.as_array()
             .unwrap()
             .iter()
@@ -46,6 +48,7 @@ impl<'a> RegressionClient<'a> {
     pub fn clear(&mut self) -> bool {
         let args: Vec<Value> = vec![];
         let result = self.client.call("clear", args);
+
         let ret = result.as_bool().unwrap();
         ret
     }
