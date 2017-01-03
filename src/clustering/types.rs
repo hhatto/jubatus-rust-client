@@ -2,13 +2,12 @@
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
-use rustc_serialize::{Encodable, Decodable};
 use common::datum::Datum;
 use msgpack::Value;
 use msgpack::value::Float;
 use msgpack::value::Integer;
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct WeightedDatum {
     pub weight: f64,
     pub point: Datum,
@@ -28,7 +27,7 @@ impl WeightedDatum {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct IndexedPoint {
     pub id: String,
     pub point: Datum,
@@ -48,7 +47,7 @@ impl IndexedPoint {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct WeightedIndex {
     pub weight: f64,
     pub id: String,

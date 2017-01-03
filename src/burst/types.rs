@@ -2,13 +2,12 @@
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
-use rustc_serialize::{Encodable, Decodable};
 use common::datum::Datum;
 use msgpack::Value;
 use msgpack::value::Float;
 use msgpack::value::Integer;
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct KeywordWithParams {
     pub keyword: String,
     pub scaling_param: f64,
@@ -32,7 +31,7 @@ impl KeywordWithParams {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct Batch {
     pub all_data_count: i64,
     pub relevant_data_count: i64,
@@ -56,7 +55,7 @@ impl Batch {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct Window {
     pub start_pos: f64,
     pub batches: Vec<Batch>,
@@ -84,7 +83,7 @@ impl Window {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct Document {
     pub pos: f64,
     pub text: String,

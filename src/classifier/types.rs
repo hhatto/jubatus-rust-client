@@ -2,13 +2,12 @@
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
-use rustc_serialize::{Encodable, Decodable};
 use common::datum::Datum;
 use msgpack::Value;
 use msgpack::value::Float;
 use msgpack::value::Integer;
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct EstimateResult {
     pub label: String,
     pub score: f64,
@@ -28,7 +27,7 @@ impl EstimateResult {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct LabeledDatum {
     pub label: String,
     pub data: Datum,

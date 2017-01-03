@@ -1,7 +1,7 @@
 use msgpack::Value;
 use msgpack::value::Float;
 
-#[derive(RustcEncodable, RustcDecodable, Debug, Default, Clone)]
+#[derive(Debug, Default, Clone)]
 pub struct Datum {
     string_values: Vec<(String, String)>,
     num_values: Vec<(String, f64)>,

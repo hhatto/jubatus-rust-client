@@ -2,7 +2,6 @@
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
-use rustc_serialize::{Encodable, Decodable};
 use common::datum::Datum;
 use msgpack::Value;
 use msgpack::value::Float;

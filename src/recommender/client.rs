@@ -8,7 +8,6 @@ use msgpack::value::{Integer, Float};
 use common::datum::Datum;
 use common::client::Client;
 use recommender::types::*;
-use rustc_serialize::Decodable;
 use rmp_serialize::Decoder;
 
 pub struct RecommenderClient<'a> {

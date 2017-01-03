@@ -2,13 +2,12 @@
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
-use rustc_serialize::{Encodable, Decodable};
 use common::datum::Datum;
 use msgpack::Value;
 use msgpack::value::Float;
 use msgpack::value::Integer;
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct Node {
     pub property: HashMap<String, String>,
     pub in_edges: Vec<u64>,
@@ -63,7 +62,7 @@ impl Node {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct Query {
     pub from_id: String,
     pub to_id: String,
@@ -83,7 +82,7 @@ impl Query {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct PresetQuery {
     pub edge_query: Vec<Query>,
     pub node_query: Vec<Query>,
@@ -115,7 +114,7 @@ impl PresetQuery {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct Edge {
     pub property: HashMap<String, String>,
     pub source: String,
@@ -152,7 +151,7 @@ impl Edge {
     }
 }
 
-#[derive(RustcEncodable, RustcDecodable, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct ShortestPathQuery {
     pub source: String,
     pub target: String,
