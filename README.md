@@ -1,5 +1,4 @@
-jubatus-rust-client
-===================
+# jubatus-rust-client [![Build Status](https://travis-ci.org/hhatto/jubatus-rust-client.svg?branch=master)](https://travis-ci.org/hhatto/jubatus-rust-client)
 
 RPC client library for [Jubatus](http://jubat.us/) in [Rust](https://www.rust-lang.org/). 
 
