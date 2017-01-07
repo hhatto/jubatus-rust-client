@@ -3,8 +3,6 @@ jubatus-rust-client
 
 RPC client library for [Jubatus](http://jubat.us/) in [Rust](https://www.rust-lang.org/). 
 
-**This is experimental module. Highly under development.**
-
 ## Usage
 
 Cargo.toml:
