@@ -17,9 +17,9 @@ pub mod weight;
 
 #[cfg(test)]
 mod tests {
-    use common::Datum;
+    use common::datum::Datum;
     use common::client::Client;
-    use classi::client::ClassifierClient;
+    use classifier::client::ClassifierClient;
 
     #[test]
     fn test_common_smoke_datam() {
@@ -27,7 +27,7 @@ mod tests {
         d.add_string("k", "v");
         assert!(d.string_values().len() == 1);
 
-        d.add_number("knum", 1);
+        d.add_number("knum", 1.0);
         assert!(d.num_values().len() == 1);
 
         d.add_binary("kbin", vec![1, 2]);
@@ -35,22 +35,14 @@ mod tests {
     }
 
     #[test]
+    #[should_panic]
     fn test_common_smoke_client() {
-        let client = Client::new("localhost:9199", "classifier");
-        let result = client.do_mix();
-        println!("{:?}", result);
+        let _ = Client::new("localhost:9199", "classifier");
     }
 
     #[test]
-    fn test_common_smoke_client_get_config() {
-        let client = Client::new("127.0.0.1:9199", "classifier");
-        let result = client.get_config();
-        println!("{:?}", result);
-    }
-
-    #[test]
+    #[should_panic]
     fn test_classify_smoke_client_classify() {
-        let client = ClassifierClient::new("127.0.0.1:9199", "classi");
-        let result = client.classify();
+        let _ = ClassifierClient::new("127.0.0.1:9199", "classi");
     }
 }
