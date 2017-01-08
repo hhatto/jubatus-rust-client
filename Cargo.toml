@@ -9,12 +9,14 @@ repository = "https://github.com/hhatto/jubatus-rust-client"
 version = "0.1.0"
 
 [dependencies]
-rmp = "^0.7"
-rmp-serialize = "0.7"
+rmp = "^0.8"
+rmp-serialize = "^0.8"
+rmpv = "0.1"
 
 [dev-dependencies]
 rand = "0.3"
 
 [dependencies.msgpack-rpc]
-git = "https://github.com/euclio/msgpack-rpc-rust.git"
+git = "https://github.com/hhatto/msgpack-rpc-rust.git"
+branch = "update-rmp"
 optional = false

@@ -1,11 +1,9 @@
-// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
 use common::datum::Datum;
-use msgpack::Value;
-use msgpack::value::Float;
-use msgpack::value::Integer;
+use rmpv::Value;
 
 #[derive(Default, Debug, Clone)]
 pub struct Node {
@@ -22,11 +20,11 @@ impl Node {
                               .collect()),
                           Value::Array(self.in_edges
                               .iter()
-                              .map(|x| Value::Integer(Integer::U64(*x)))
+                              .map(|x| Value::U64(*x))
                               .collect()),
                           Value::Array(self.out_edges
                               .iter()
-                              .map(|x| Value::Integer(Integer::U64(*x)))
+                              .map(|x| Value::U64(*x))
                               .collect())])
     }
 
@@ -163,7 +161,7 @@ impl ShortestPathQuery {
     pub fn to_msgpack_value(&self) -> Value {
         Value::Array(vec![Value::String(self.source.to_owned()),
                           Value::String(self.target.to_owned()),
-                          Value::Integer(Integer::U64(self.max_hop)),
+                          Value::U64(self.max_hop),
                           self.query.to_msgpack_value()])
     }
 

@@ -1,10 +1,9 @@
-// This file is auto-generated from recommender.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from recommender.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
 use std::collections::HashMap;
-use msgpack::Value;
-use msgpack::value::{Integer, Float};
+use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use recommender::types::*;
@@ -51,7 +50,7 @@ impl<'a> RecommenderClient<'a> {
     }
 
     pub fn similar_row_from_id(&mut self, id: String, size: u64) -> Vec<IdWithScore> {
-        let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::Integer(Integer::U64(size))];
+        let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::U64(size)];
         let result = self.client.call("similar_row_from_id", args);
         result.as_array()
             .unwrap()
@@ -61,7 +60,7 @@ impl<'a> RecommenderClient<'a> {
     }
 
     pub fn similar_row_from_datum(&mut self, row: Datum, size: u64) -> Vec<IdWithScore> {
-        let args: Vec<Value> = vec![row.to_msgpack_value(), Value::Integer(Integer::U64(size))];
+        let args: Vec<Value> = vec![row.to_msgpack_value(), Value::U64(size)];
         let result = self.client.call("similar_row_from_datum", args);
         result.as_array()
             .unwrap()

@@ -1,11 +1,9 @@
-// This file is auto-generated from regression.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from regression.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
 use common::datum::Datum;
-use msgpack::Value;
-use msgpack::value::Float;
-use msgpack::value::Integer;
+use rmpv::Value;
 
 #[derive(Default, Debug, Clone)]
 pub struct ScoredDatum {
@@ -15,7 +13,7 @@ pub struct ScoredDatum {
 
 impl ScoredDatum {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::Float(Float::F64(self.score)), self.data.to_msgpack_value()])
+        Value::Array(vec![Value::F64(self.score), self.data.to_msgpack_value()])
     }
 
     pub fn from_msgpack_value(data: Value) -> ScoredDatum {

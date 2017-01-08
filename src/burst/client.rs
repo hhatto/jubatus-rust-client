@@ -1,10 +1,9 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
 use std::collections::HashMap;
-use msgpack::Value;
-use msgpack::value::{Integer, Float};
+use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use burst::types::*;
@@ -35,7 +34,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn get_result_at(&mut self, keyword: String, pos: f64) -> Window {
-        let args: Vec<Value> = vec![Value::String(keyword.to_owned()), Value::Float(Float::F64(pos))];
+        let args: Vec<Value> = vec![Value::String(keyword.to_owned()), Value::F64(pos)];
         let result = self.client.call("get_result_at", args);
         Window::from_msgpack_value(result.clone())
     }
@@ -54,7 +53,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn get_all_bursted_results_at(&mut self, pos: f64) -> HashMap<String, Window> {
-        let args: Vec<Value> = vec![Value::Float(Float::F64(pos))];
+        let args: Vec<Value> = vec![Value::F64(pos)];
         let result = self.client.call("get_all_bursted_results_at", args);
         result.as_map()
             .unwrap()

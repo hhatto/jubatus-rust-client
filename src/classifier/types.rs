@@ -1,11 +1,9 @@
-// This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
 use common::datum::Datum;
-use msgpack::Value;
-use msgpack::value::Float;
-use msgpack::value::Integer;
+use rmpv::Value;
 
 #[derive(Default, Debug, Clone)]
 pub struct EstimateResult {
@@ -15,7 +13,7 @@ pub struct EstimateResult {
 
 impl EstimateResult {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.label.to_owned()), Value::Float(Float::F64(self.score))])
+        Value::Array(vec![Value::String(self.label.to_owned()), Value::F64(self.score)])
     }
 
     pub fn from_msgpack_value(data: Value) -> EstimateResult {

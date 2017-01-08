@@ -1,5 +1,5 @@
 use rpc;
-use msgpack::Value;
+use rmpv::Value;
 
 pub struct Client<'a> {
     client: rpc::Client,

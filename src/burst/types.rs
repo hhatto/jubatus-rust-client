@@ -1,11 +1,9 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
 use common::datum::Datum;
-use msgpack::Value;
-use msgpack::value::Float;
-use msgpack::value::Integer;
+use rmpv::Value;
 
 #[derive(Default, Debug, Clone)]
 pub struct KeywordWithParams {
@@ -16,9 +14,7 @@ pub struct KeywordWithParams {
 
 impl KeywordWithParams {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.keyword.to_owned()),
-                          Value::Float(Float::F64(self.scaling_param)),
-                          Value::Float(Float::F64(self.gamma))])
+        Value::Array(vec![Value::String(self.keyword.to_owned()), Value::F64(self.scaling_param), Value::F64(self.gamma)])
     }
 
     pub fn from_msgpack_value(data: Value) -> KeywordWithParams {
@@ -40,9 +36,7 @@ pub struct Batch {
 
 impl Batch {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::Integer(Integer::I64(self.all_data_count)),
-                          Value::Integer(Integer::I64(self.relevant_data_count)),
-                          Value::Float(Float::F64(self.burst_weight))])
+        Value::Array(vec![Value::I64(self.all_data_count), Value::I64(self.relevant_data_count), Value::F64(self.burst_weight)])
     }
 
     pub fn from_msgpack_value(data: Value) -> Batch {
@@ -63,11 +57,7 @@ pub struct Window {
 
 impl Window {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::Float(Float::F64(self.start_pos)),
-                          Value::Array(self.batches
-                              .iter()
-                              .map(|x| x.to_msgpack_value())
-                              .collect())])
+        Value::Array(vec![Value::F64(self.start_pos), Value::Array(self.batches.iter().map(|x| x.to_msgpack_value()).collect())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Window {
@@ -91,7 +81,7 @@ pub struct Document {
 
 impl Document {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::Float(Float::F64(self.pos)), Value::String(self.text.to_owned())])
+        Value::Array(vec![Value::F64(self.pos), Value::String(self.text.to_owned())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Document {

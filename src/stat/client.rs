@@ -1,10 +1,9 @@
-// This file is auto-generated from stat.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from stat.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
 use std::collections::HashMap;
-use msgpack::Value;
-use msgpack::value::{Integer, Float};
+use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use stat::types::*;
@@ -21,7 +20,7 @@ impl<'a> StatClient<'a> {
     }
 
     pub fn push(&mut self, key: String, value: f64) -> bool {
-        let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::Float(Float::F64(value))];
+        let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::F64(value)];
         let result = self.client.call("push", args);
         result.as_bool().unwrap()
     }
@@ -57,7 +56,7 @@ impl<'a> StatClient<'a> {
     }
 
     pub fn moment(&mut self, key: String, degree: i64, center: f64) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::Integer(Integer::I64(degree)), Value::Float(Float::F64(center))];
+        let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::I64(degree), Value::F64(center)];
         let result = self.client.call("moment", args);
         result.as_f64().unwrap()
     }

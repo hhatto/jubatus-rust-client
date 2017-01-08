@@ -1,10 +1,9 @@
-// This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-25-g26c97cda/support-rust-client-for-jenerator
+// This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
 use std::collections::HashMap;
-use msgpack::Value;
-use msgpack::value::{Integer, Float};
+use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use bandit::types::*;
@@ -39,8 +38,7 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn register_reward(&mut self, player_id: String, arm_id: String, reward: f64) -> bool {
-        let args: Vec<Value> =
-            vec![Value::String(player_id.to_owned()), Value::String(arm_id.to_owned()), Value::Float(Float::F64(reward))];
+        let args: Vec<Value> = vec![Value::String(player_id.to_owned()), Value::String(arm_id.to_owned()), Value::F64(reward)];
         let result = self.client.call("register_reward", args);
         result.as_bool().unwrap()
     }

@@ -1,5 +1,4 @@
-use msgpack::Value;
-use msgpack::value::Float;
+use rmpv::Value;
 
 #[derive(Debug, Default, Clone)]
 pub struct Datum {
@@ -51,7 +50,7 @@ impl Datum {
             s.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::String(v.1.to_owned())]));
         }
         for v in self.num_values.iter() {
-            n.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::Float(Float::F64(v.1))]));
+            n.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::F64(v.1)]));
         }
         for v in self.binary_values.iter() {
             b.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::Binary(v.1.to_owned())]));

@@ -1,6 +1,7 @@
 extern crate rmp as msgpack;
 extern crate msgpack_rpc as rpc;
 extern crate rmp_serialize;
+extern crate rmpv;
 
 pub mod common;
 pub mod anomaly;
