@@ -1,4 +1,4 @@
-// This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
+// This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -7,7 +7,6 @@ use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use clustering::types::*;
-use rmp_serialize::Decoder;
 
 pub struct ClusteringClient<'a> {
     client: Client<'a>,

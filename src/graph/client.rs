@@ -1,4 +1,4 @@
-// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
+// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -7,7 +7,6 @@ use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use graph::types::*;
-use rmp_serialize::Decoder;
 
 pub struct GraphClient<'a> {
     client: Client<'a>,

@@ -1,4 +1,4 @@
-// This file is auto-generated from anomaly.idl(0.9.0-26-g051b3019) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
+// This file is auto-generated from anomaly.idl(0.9.0-26-g051b3019) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -7,7 +7,6 @@ use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use anomaly::types::*;
-use rmp_serialize::Decoder;
 
 pub struct AnomalyClient<'a> {
     client: Client<'a>,

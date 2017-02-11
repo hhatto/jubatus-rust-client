@@ -1,4 +1,4 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-26-g0d84e505/support-rust-client-for-jenerator
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 
@@ -7,7 +7,6 @@ use rmpv::Value;
 use common::datum::Datum;
 use common::client::Client;
 use burst::types::*;
-use rmp_serialize::Decoder;
 
 pub struct BurstClient<'a> {
     client: Client<'a>,
