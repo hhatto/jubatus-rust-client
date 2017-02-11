@@ -32,6 +32,13 @@ fn main() {
 }
 ```
 
+## for Maintainer
+
+```console
+$ sh -x generate.sh
+$ cargo test
+```
+
 ## License
 
 MIT
