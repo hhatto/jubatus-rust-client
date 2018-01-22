@@ -1,7 +1,6 @@
 // This file is auto-generated from regression.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -19,19 +18,19 @@ impl<'a> RegressionClient<'a> {
     }
 
     pub fn train(&mut self, train_data: Vec<ScoredDatum>) -> i64 {
-        let args: Vec<Value> = vec![Value::Array(train_data.iter()
-                                        .map(|x| x.to_msgpack_value())
-                                        .collect())];
+        let args: Vec<Value> = vec![Value::Array(train_data.iter().map(|x| x.to_msgpack_value()).collect())];
         let result = self.client.call("train", args);
         result.as_i64().unwrap()
     }
 
     pub fn estimate(&mut self, estimate_data: Vec<Datum>) -> Vec<f64> {
-        let args: Vec<Value> = vec![Value::Array(estimate_data.iter()
-                                        .map(|x| x.to_msgpack_value())
-                                        .collect())];
+        let args: Vec<Value> = vec![Value::Array(estimate_data.iter().map(|x| x.to_msgpack_value()).collect())];
         let result = self.client.call("estimate", args);
-        result.as_array().unwrap().iter().map(|x| x.as_f64().unwrap()).collect()
+        result.as_array()
+              .unwrap()
+              .iter()
+              .map(|x| x.as_f64().unwrap())
+              .collect()
     }
 
     pub fn clear(&mut self) -> bool {
@@ -46,7 +45,8 @@ impl<'a> RegressionClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -72,7 +72,8 @@ impl<'a> RegressionClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -94,7 +95,8 @@ impl<'a> RegressionClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

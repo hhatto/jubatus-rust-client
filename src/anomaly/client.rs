@@ -1,7 +1,6 @@
 // This file is auto-generated from anomaly.idl(0.9.0-26-g051b3019) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -58,10 +57,10 @@ impl<'a> AnomalyClient<'a> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_rows", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| x.as_str().unwrap().to_string())
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| x.as_str().unwrap().to_string())
+              .collect()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
@@ -70,7 +69,8 @@ impl<'a> AnomalyClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -96,7 +96,8 @@ impl<'a> AnomalyClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -118,7 +119,8 @@ impl<'a> AnomalyClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

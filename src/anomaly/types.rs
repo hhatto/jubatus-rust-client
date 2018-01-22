@@ -18,9 +18,7 @@ impl IdWithScore {
 
     pub fn from_msgpack_value(data: Value) -> IdWithScore {
         let s = data.as_array().unwrap();
-        IdWithScore {
-            id: s[0].as_str().unwrap().to_string(),
-            score: s[1].as_f64().unwrap(),
-        }
+        IdWithScore { id: s[0].as_str().unwrap().to_string(),
+                      score: s[1].as_f64().unwrap(), }
     }
 }

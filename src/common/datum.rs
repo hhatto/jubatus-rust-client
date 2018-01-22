@@ -9,11 +9,9 @@ pub struct Datum {
 
 impl Datum {
     pub fn new() -> Self {
-        Datum {
-            string_values: vec![],
-            num_values: vec![],
-            binary_values: vec![],
-        }
+        Datum { string_values: vec![],
+                num_values: vec![],
+                binary_values: vec![], }
     }
 
     pub fn from_msgpack_value(data: Value) -> Datum {
@@ -34,11 +32,9 @@ impl Datum {
             let bin = sv[1].as_slice().unwrap();
             b.push((sv[0].as_str().unwrap().to_string(), Vec::from(bin)));
         }
-        Datum {
-            string_values: s,
-            num_values: n,
-            binary_values: b,
-        }
+        Datum { string_values: s,
+                num_values: n,
+                binary_values: b, }
     }
 
     pub fn to_msgpack_value(&self) -> Value {

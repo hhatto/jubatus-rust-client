@@ -18,9 +18,7 @@ impl ScoredDatum {
 
     pub fn from_msgpack_value(data: Value) -> ScoredDatum {
         let s = data.as_array().unwrap();
-        ScoredDatum {
-            score: s[0].as_f64().unwrap(),
-            data: Datum::from_msgpack_value(s[1].clone()),
-        }
+        ScoredDatum { score: s[0].as_f64().unwrap(),
+                      data: Datum::from_msgpack_value(s[1].clone()), }
     }
 }

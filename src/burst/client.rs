@@ -1,7 +1,6 @@
 // This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -19,9 +18,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn add_documents(&mut self, data: Vec<Document>) -> i64 {
-        let args: Vec<Value> = vec![Value::Array(data.iter()
-                                        .map(|x| x.to_msgpack_value())
-                                        .collect())];
+        let args: Vec<Value> = vec![Value::Array(data.iter().map(|x| x.to_msgpack_value()).collect())];
         let result = self.client.call("add_documents", args);
         result.as_i64().unwrap()
     }
@@ -42,36 +39,36 @@ impl<'a> BurstClient<'a> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_bursted_results", args);
         result.as_map()
-            .unwrap()
-            .iter()
-            .map(|m| {
-                let (ref k, ref v): (Value, Value) = *m;
-                (k.as_str().unwrap().to_string(), Window::from_msgpack_value(v.clone()))
-            })
-            .collect::<HashMap<String, Window>>()
+              .unwrap()
+              .iter()
+              .map(|m| {
+                       let (ref k, ref v): (Value, Value) = *m;
+                       (k.as_str().unwrap().to_string(), Window::from_msgpack_value(v.clone()))
+                   })
+              .collect::<HashMap<String, Window>>()
     }
 
     pub fn get_all_bursted_results_at(&mut self, pos: f64) -> HashMap<String, Window> {
         let args: Vec<Value> = vec![Value::F64(pos)];
         let result = self.client.call("get_all_bursted_results_at", args);
         result.as_map()
-            .unwrap()
-            .iter()
-            .map(|m| {
-                let (ref k, ref v): (Value, Value) = *m;
-                (k.as_str().unwrap().to_string(), Window::from_msgpack_value(v.clone()))
-            })
-            .collect::<HashMap<String, Window>>()
+              .unwrap()
+              .iter()
+              .map(|m| {
+                       let (ref k, ref v): (Value, Value) = *m;
+                       (k.as_str().unwrap().to_string(), Window::from_msgpack_value(v.clone()))
+                   })
+              .collect::<HashMap<String, Window>>()
     }
 
     pub fn get_all_keywords(&mut self) -> Vec<KeywordWithParams> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_keywords", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| KeywordWithParams::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| KeywordWithParams::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn add_keyword(&mut self, keyword: KeywordWithParams) -> bool {
@@ -104,7 +101,8 @@ impl<'a> BurstClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -130,7 +128,8 @@ impl<'a> BurstClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -152,7 +151,8 @@ impl<'a> BurstClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

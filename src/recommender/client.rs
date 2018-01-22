@@ -1,7 +1,6 @@
 // This file is auto-generated from recommender.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -52,20 +51,20 @@ impl<'a> RecommenderClient<'a> {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::U64(size)];
         let result = self.client.call("similar_row_from_id", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| IdWithScore::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn similar_row_from_datum(&mut self, row: Datum, size: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![row.to_msgpack_value(), Value::U64(size)];
         let result = self.client.call("similar_row_from_datum", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| IdWithScore::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn decode_row(&mut self, id: String) -> Datum {
@@ -78,10 +77,10 @@ impl<'a> RecommenderClient<'a> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_rows", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| x.as_str().unwrap().to_string())
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| x.as_str().unwrap().to_string())
+              .collect()
     }
 
     pub fn calc_similarity(&mut self, lhs: Datum, rhs: Datum) -> f64 {
@@ -102,7 +101,8 @@ impl<'a> RecommenderClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -128,7 +128,8 @@ impl<'a> RecommenderClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -150,7 +151,8 @@ impl<'a> RecommenderClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

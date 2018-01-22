@@ -18,10 +18,8 @@ impl EstimateResult {
 
     pub fn from_msgpack_value(data: Value) -> EstimateResult {
         let s = data.as_array().unwrap();
-        EstimateResult {
-            label: s[0].as_str().unwrap().to_string(),
-            score: s[1].as_f64().unwrap(),
-        }
+        EstimateResult { label: s[0].as_str().unwrap().to_string(),
+                         score: s[1].as_f64().unwrap(), }
     }
 }
 
@@ -33,14 +31,13 @@ pub struct LabeledDatum {
 
 impl LabeledDatum {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.label.to_owned()), self.data.to_msgpack_value()])
+        Value::Array(vec![Value::String(self.label.to_owned()),
+                          self.data.to_msgpack_value()])
     }
 
     pub fn from_msgpack_value(data: Value) -> LabeledDatum {
         let s = data.as_array().unwrap();
-        LabeledDatum {
-            label: s[0].as_str().unwrap().to_string(),
-            data: Datum::from_msgpack_value(s[1].clone()),
-        }
+        LabeledDatum { label: s[0].as_str().unwrap().to_string(),
+                       data: Datum::from_msgpack_value(s[1].clone()), }
     }
 }

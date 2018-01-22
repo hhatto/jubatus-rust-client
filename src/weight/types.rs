@@ -18,9 +18,7 @@ impl Feature {
 
     pub fn from_msgpack_value(data: Value) -> Feature {
         let s = data.as_array().unwrap();
-        Feature {
-            key: s[0].as_str().unwrap().to_string(),
-            value: s[1].as_f64().unwrap(),
-        }
+        Feature { key: s[0].as_str().unwrap().to_string(),
+                  value: s[1].as_f64().unwrap(), }
     }
 }

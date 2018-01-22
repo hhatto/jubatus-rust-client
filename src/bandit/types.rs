@@ -18,9 +18,7 @@ impl ArmInfo {
 
     pub fn from_msgpack_value(data: Value) -> ArmInfo {
         let s = data.as_array().unwrap();
-        ArmInfo {
-            trial_count: s[0].as_i64().unwrap(),
-            weight: s[1].as_f64().unwrap(),
-        }
+        ArmInfo { trial_count: s[0].as_i64().unwrap(),
+                  weight: s[1].as_f64().unwrap(), }
     }
 }

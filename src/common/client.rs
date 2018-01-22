@@ -8,10 +8,8 @@ pub struct Client<'a> {
 
 impl<'a> Client<'a> {
     pub fn new(host: &str, name: &'a str) -> Self {
-        Client {
-            name: name,
-            client: rpc::Client::connect_socket(host),
-        }
+        Client { name: name,
+                 client: rpc::Client::connect_socket(host), }
     }
 
     pub fn call(&mut self, method: &str, arg: Vec<Value>) -> Value {

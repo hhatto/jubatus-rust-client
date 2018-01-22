@@ -1,7 +1,6 @@
 // This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -19,9 +18,7 @@ impl<'a> ClusteringClient<'a> {
     }
 
     pub fn push(&mut self, points: Vec<IndexedPoint>) -> bool {
-        let args: Vec<Value> = vec![Value::Array(points.iter()
-                                        .map(|x| x.to_msgpack_value())
-                                        .collect())];
+        let args: Vec<Value> = vec![Value::Array(points.iter().map(|x| x.to_msgpack_value()).collect())];
         let result = self.client.call("push", args);
         result.as_bool().unwrap()
     }
@@ -36,42 +33,40 @@ impl<'a> ClusteringClient<'a> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_core_members", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| {
-                x.as_array()
-                    .unwrap()
-                    .iter()
-                    .map(|x| WeightedDatum::from_msgpack_value(x.clone()))
-                    .collect()
-            })
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| {
+                       x.as_array().unwrap()
+                        .iter()
+                        .map(|x| WeightedDatum::from_msgpack_value(x.clone()))
+                        .collect()
+                   })
+              .collect()
     }
 
     pub fn get_core_members_light(&mut self) -> Vec<Vec<WeightedIndex>> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_core_members_light", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| {
-                x.as_array()
-                    .unwrap()
-                    .iter()
-                    .map(|x| WeightedIndex::from_msgpack_value(x.clone()))
-                    .collect()
-            })
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| {
+                       x.as_array().unwrap()
+                        .iter()
+                        .map(|x| WeightedIndex::from_msgpack_value(x.clone()))
+                        .collect()
+                   })
+              .collect()
     }
 
     pub fn get_k_center(&mut self) -> Vec<Datum> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_k_center", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| Datum::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| Datum::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn get_nearest_center(&mut self, point: Datum) -> Datum {
@@ -84,20 +79,20 @@ impl<'a> ClusteringClient<'a> {
         let args: Vec<Value> = vec![point.to_msgpack_value()];
         let result = self.client.call("get_nearest_members", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| WeightedDatum::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| WeightedDatum::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn get_nearest_members_light(&mut self, point: Datum) -> Vec<WeightedIndex> {
         let args: Vec<Value> = vec![point.to_msgpack_value()];
         let result = self.client.call("get_nearest_members_light", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| WeightedIndex::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| WeightedIndex::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn clear(&mut self) -> bool {
@@ -112,7 +107,8 @@ impl<'a> ClusteringClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -138,7 +134,8 @@ impl<'a> ClusteringClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -160,7 +157,8 @@ impl<'a> ClusteringClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

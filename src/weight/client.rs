@@ -1,7 +1,6 @@
 // This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -22,20 +21,20 @@ impl<'a> WeightClient<'a> {
         let args: Vec<Value> = vec![d.to_msgpack_value()];
         let result = self.client.call("update", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| Feature::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| Feature::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn calc_weight(&mut self, d: Datum) -> Vec<Feature> {
         let args: Vec<Value> = vec![d.to_msgpack_value()];
         let result = self.client.call("calc_weight", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| Feature::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| Feature::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn clear(&mut self) -> bool {
@@ -50,7 +49,8 @@ impl<'a> WeightClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -76,7 +76,8 @@ impl<'a> WeightClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -98,7 +99,8 @@ impl<'a> WeightClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

@@ -1,7 +1,6 @@
 // This file is auto-generated from nearest_neighbor.idl(0.8.2-20-g8e4dc3b5) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -34,50 +33,50 @@ impl<'a> NearestNeighborClient<'a> {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::U64(size)];
         let result = self.client.call("neighbor_row_from_id", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| IdWithScore::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn neighbor_row_from_datum(&mut self, query: Datum, size: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![query.to_msgpack_value(), Value::U64(size)];
         let result = self.client.call("neighbor_row_from_datum", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| IdWithScore::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn similar_row_from_id(&mut self, id: String, ret_num: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::U64(ret_num)];
         let result = self.client.call("similar_row_from_id", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| IdWithScore::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn similar_row_from_datum(&mut self, query: Datum, ret_num: u64) -> Vec<IdWithScore> {
         let args: Vec<Value> = vec![query.to_msgpack_value(), Value::U64(ret_num)];
         let result = self.client.call("similar_row_from_datum", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| IdWithScore::from_msgpack_value(x.clone()))
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| IdWithScore::from_msgpack_value(x.clone()))
+              .collect()
     }
 
     pub fn get_all_rows(&mut self) -> Vec<String> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_all_rows", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| x.as_str().unwrap().to_string())
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| x.as_str().unwrap().to_string())
+              .collect()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
@@ -86,7 +85,8 @@ impl<'a> NearestNeighborClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -112,7 +112,8 @@ impl<'a> NearestNeighborClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -134,7 +135,8 @@ impl<'a> NearestNeighborClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

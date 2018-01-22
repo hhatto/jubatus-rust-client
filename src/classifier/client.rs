@@ -1,7 +1,6 @@
 // This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -19,42 +18,37 @@ impl<'a> ClassifierClient<'a> {
     }
 
     pub fn train(&mut self, data: Vec<LabeledDatum>) -> i64 {
-        let args: Vec<Value> = vec![Value::Array(data.iter()
-                                        .map(|x| x.to_msgpack_value())
-                                        .collect())];
+        let args: Vec<Value> = vec![Value::Array(data.iter().map(|x| x.to_msgpack_value()).collect())];
         let result = self.client.call("train", args);
         result.as_i64().unwrap()
     }
 
     pub fn classify(&mut self, data: Vec<Datum>) -> Vec<Vec<EstimateResult>> {
-        let args: Vec<Value> = vec![Value::Array(data.iter()
-                                        .map(|x| x.to_msgpack_value())
-                                        .collect())];
+        let args: Vec<Value> = vec![Value::Array(data.iter().map(|x| x.to_msgpack_value()).collect())];
         let result = self.client.call("classify", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| {
-                x.as_array()
-                    .unwrap()
-                    .iter()
-                    .map(|x| EstimateResult::from_msgpack_value(x.clone()))
-                    .collect()
-            })
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| {
+                       x.as_array().unwrap()
+                        .iter()
+                        .map(|x| EstimateResult::from_msgpack_value(x.clone()))
+                        .collect()
+                   })
+              .collect()
     }
 
     pub fn get_labels(&mut self) -> HashMap<String, u64> {
         let args: Vec<Value> = vec![];
         let result = self.client.call("get_labels", args);
         result.as_map()
-            .unwrap()
-            .iter()
-            .map(|m| {
-                let (ref k, ref v): (Value, Value) = *m;
-                (k.as_str().unwrap().to_string(), v.as_u64().unwrap())
-            })
-            .collect::<HashMap<String, u64>>()
+              .unwrap()
+              .iter()
+              .map(|m| {
+                       let (ref k, ref v): (Value, Value) = *m;
+                       (k.as_str().unwrap().to_string(), v.as_u64().unwrap())
+                   })
+              .collect::<HashMap<String, u64>>()
     }
 
     pub fn set_label(&mut self, new_label: String) -> bool {
@@ -81,7 +75,8 @@ impl<'a> ClassifierClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -107,7 +102,8 @@ impl<'a> ClassifierClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -129,7 +125,8 @@ impl<'a> ClassifierClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

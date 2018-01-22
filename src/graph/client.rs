@@ -1,7 +1,6 @@
 // This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -31,10 +30,11 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn update_node(&mut self, node_id: String, property: HashMap<String, String>) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()),
-                                    Value::Map(property.iter()
-                                        .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
-                                        .collect())];
+        let args: Vec<Value> =
+            vec![Value::String(node_id.to_owned()),
+                 Value::Map(property.iter()
+                                    .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
+                                    .collect())];
         let result = self.client.call("update_node", args);
         result.as_bool().unwrap()
     }
@@ -46,7 +46,9 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn update_edge(&mut self, node_id: String, edge_id: u64, e: Edge) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()), Value::U64(edge_id), e.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::String(node_id.to_owned()),
+                                    Value::U64(edge_id),
+                                    e.to_msgpack_value()];
         let result = self.client.call("update_edge", args);
         result.as_bool().unwrap()
     }
@@ -58,7 +60,9 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn get_centrality(&mut self, node_id: String, centrality_type: i64, query: PresetQuery) -> f64 {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()), Value::I64(centrality_type), query.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::String(node_id.to_owned()),
+                                    Value::I64(centrality_type),
+                                    query.to_msgpack_value()];
         let result = self.client.call("get_centrality", args);
         result.as_f64().unwrap()
     }
@@ -91,10 +95,10 @@ impl<'a> GraphClient<'a> {
         let args: Vec<Value> = vec![query.to_msgpack_value()];
         let result = self.client.call("get_shortest_path", args);
         result.as_array()
-            .unwrap()
-            .iter()
-            .map(|x| x.as_str().unwrap().to_string())
-            .collect()
+              .unwrap()
+              .iter()
+              .map(|x| x.as_str().unwrap().to_string())
+              .collect()
     }
 
     pub fn update_index(&mut self) -> bool {
@@ -145,7 +149,8 @@ impl<'a> GraphClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -171,7 +176,8 @@ impl<'a> GraphClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -193,7 +199,8 @@ impl<'a> GraphClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }

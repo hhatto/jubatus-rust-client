@@ -1,7 +1,6 @@
 // This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
-
 use std::collections::HashMap;
 use rmpv::Value;
 use common::datum::Datum;
@@ -37,7 +36,9 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn register_reward(&mut self, player_id: String, arm_id: String, reward: f64) -> bool {
-        let args: Vec<Value> = vec![Value::String(player_id.to_owned()), Value::String(arm_id.to_owned()), Value::F64(reward)];
+        let args: Vec<Value> = vec![Value::String(player_id.to_owned()),
+                                    Value::String(arm_id.to_owned()),
+                                    Value::F64(reward)];
         let result = self.client.call("register_reward", args);
         result.as_bool().unwrap()
     }
@@ -46,13 +47,13 @@ impl<'a> BanditClient<'a> {
         let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
         let result = self.client.call("get_arm_info", args);
         result.as_map()
-            .unwrap()
-            .iter()
-            .map(|m| {
-                let (ref k, ref v): (Value, Value) = *m;
-                (k.as_str().unwrap().to_string(), ArmInfo::from_msgpack_value(v.clone()))
-            })
-            .collect::<HashMap<String, ArmInfo>>()
+              .unwrap()
+              .iter()
+              .map(|m| {
+                       let (ref k, ref v): (Value, Value) = *m;
+                       (k.as_str().unwrap().to_string(), ArmInfo::from_msgpack_value(v.clone()))
+                   })
+              .collect::<HashMap<String, ArmInfo>>()
     }
 
     pub fn reset(&mut self, player_id: String) -> bool {
@@ -73,7 +74,8 @@ impl<'a> BanditClient<'a> {
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
             let (ref k, ref v): (Value, Value) = *r;
-            ret.insert(k.as_str().unwrap().to_string(), v.as_str().unwrap().to_string());
+            ret.insert(k.as_str().unwrap().to_string(),
+                       v.as_str().unwrap().to_string());
         }
         ret
     }
@@ -99,7 +101,8 @@ impl<'a> BanditClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
@@ -121,7 +124,8 @@ impl<'a> BanditClient<'a> {
             let mut hh: HashMap<String, String> = HashMap::new();
             for rr in vv.as_map().unwrap().iter() {
                 let (ref kkk, ref vvv): (Value, Value) = *rr;
-                hh.insert(kkk.as_str().unwrap().to_string(), vvv.as_str().unwrap().to_string());
+                hh.insert(kkk.as_str().unwrap().to_string(),
+                          vvv.as_str().unwrap().to_string());
             }
             ret.insert(kk.as_str().unwrap().to_string(), hh);
         }
