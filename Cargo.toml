@@ -10,12 +10,13 @@ version = "0.1.0"
 
 [dependencies]
 rmp = "^0.8"
-rmpv = "0.2"
+rmp-serde = "0.13"
+rmpv = "0.4"
 
 [dev-dependencies]
 rand = "0.3"
 
 [dependencies.msgpack-rpc]
 git = "https://github.com/hhatto/msgpack-rpc-rust.git"
-branch = "update-rmp-v2"
+branch = "master"
 optional = false

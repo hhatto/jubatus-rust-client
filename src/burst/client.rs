@@ -1,4 +1,4 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -24,13 +24,13 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn get_result(&mut self, keyword: String) -> Window {
-        let args: Vec<Value> = vec![Value::String(keyword.to_owned())];
+        let args: Vec<Value> = vec![Value::from(keyword.to_owned())];
         let result = self.client.call("get_result", args);
         Window::from_msgpack_value(result.clone())
     }
 
     pub fn get_result_at(&mut self, keyword: String, pos: f64) -> Window {
-        let args: Vec<Value> = vec![Value::String(keyword.to_owned()), Value::F64(pos)];
+        let args: Vec<Value> = vec![Value::from(keyword.to_owned()), Value::from(pos)];
         let result = self.client.call("get_result_at", args);
         Window::from_msgpack_value(result.clone())
     }
@@ -49,7 +49,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn get_all_bursted_results_at(&mut self, pos: f64) -> HashMap<String, Window> {
-        let args: Vec<Value> = vec![Value::F64(pos)];
+        let args: Vec<Value> = vec![Value::from(pos)];
         let result = self.client.call("get_all_bursted_results_at", args);
         result.as_map()
               .unwrap()
@@ -78,7 +78,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn remove_keyword(&mut self, keyword: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(keyword.to_owned())];
+        let args: Vec<Value> = vec![Value::from(keyword.to_owned())];
         let result = self.client.call("remove_keyword", args);
         result.as_bool().unwrap()
     }
@@ -96,7 +96,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -108,7 +108,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -160,7 +160,7 @@ impl<'a> BurstClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

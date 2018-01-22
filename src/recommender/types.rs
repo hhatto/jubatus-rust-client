@@ -1,4 +1,4 @@
-// This file is auto-generated from recommender.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from recommender.idl(1.0.0-112-g051a909c) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -13,7 +13,7 @@ pub struct IdWithScore {
 
 impl IdWithScore {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.id.to_owned()), Value::F64(self.score)])
+        Value::Array(vec![Value::from(self.id.to_owned()), Value::from(self.score)])
     }
 
     pub fn from_msgpack_value(data: Value) -> IdWithScore {

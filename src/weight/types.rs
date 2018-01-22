@@ -1,4 +1,4 @@
-// This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -13,7 +13,7 @@ pub struct Feature {
 
 impl Feature {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.key.to_owned()), Value::F64(self.value)])
+        Value::Array(vec![Value::from(self.key.to_owned()), Value::from(self.value)])
     }
 
     pub fn from_msgpack_value(data: Value) -> Feature {

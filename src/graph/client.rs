@@ -1,4 +1,4 @@
-// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -24,44 +24,44 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn remove_node(&mut self, node_id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned())];
         let result = self.client.call("remove_node", args);
         result.as_bool().unwrap()
     }
 
     pub fn update_node(&mut self, node_id: String, property: HashMap<String, String>) -> bool {
         let args: Vec<Value> =
-            vec![Value::String(node_id.to_owned()),
+            vec![Value::from(node_id.to_owned()),
                  Value::Map(property.iter()
-                                    .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
+                                    .map(|(k, v)| (Value::from(k.to_owned()), Value::from(v.to_owned())))
                                     .collect())];
         let result = self.client.call("update_node", args);
         result.as_bool().unwrap()
     }
 
     pub fn create_edge(&mut self, node_id: String, e: Edge) -> u64 {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()), e.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned()), e.to_msgpack_value()];
         let result = self.client.call("create_edge", args);
         result.as_u64().unwrap()
     }
 
     pub fn update_edge(&mut self, node_id: String, edge_id: u64, e: Edge) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()),
-                                    Value::U64(edge_id),
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned()),
+                                    Value::from(edge_id),
                                     e.to_msgpack_value()];
         let result = self.client.call("update_edge", args);
         result.as_bool().unwrap()
     }
 
     pub fn remove_edge(&mut self, node_id: String, edge_id: u64) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()), Value::U64(edge_id)];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned()), Value::from(edge_id)];
         let result = self.client.call("remove_edge", args);
         result.as_bool().unwrap()
     }
 
     pub fn get_centrality(&mut self, node_id: String, centrality_type: i64, query: PresetQuery) -> f64 {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()),
-                                    Value::I64(centrality_type),
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned()),
+                                    Value::from(centrality_type),
                                     query.to_msgpack_value()];
         let result = self.client.call("get_centrality", args);
         result.as_f64().unwrap()
@@ -114,37 +114,37 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn get_node(&mut self, node_id: String) -> Node {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned())];
         let result = self.client.call("get_node", args);
         Node::from_msgpack_value(result.clone())
     }
 
     pub fn get_edge(&mut self, node_id: String, edge_id: u64) -> Edge {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned()), Value::U64(edge_id)];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned()), Value::from(edge_id)];
         let result = self.client.call("get_edge", args);
         Edge::from_msgpack_value(result.clone())
     }
 
     pub fn create_node_here(&mut self, node_id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned())];
         let result = self.client.call("create_node_here", args);
         result.as_bool().unwrap()
     }
 
     pub fn remove_global_node(&mut self, node_id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(node_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(node_id.to_owned())];
         let result = self.client.call("remove_global_node", args);
         result.as_bool().unwrap()
     }
 
     pub fn create_edge_here(&mut self, edge_id: u64, e: Edge) -> bool {
-        let args: Vec<Value> = vec![Value::U64(edge_id), e.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::from(edge_id), e.to_msgpack_value()];
         let result = self.client.call("create_edge_here", args);
         result.as_bool().unwrap()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -156,7 +156,7 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -208,7 +208,7 @@ impl<'a> GraphClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

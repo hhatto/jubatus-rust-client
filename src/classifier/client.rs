@@ -1,4 +1,4 @@
-// This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from classifier.idl(0.8.9-17-gd4c007f7) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -52,7 +52,7 @@ impl<'a> ClassifierClient<'a> {
     }
 
     pub fn set_label(&mut self, new_label: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(new_label.to_owned())];
+        let args: Vec<Value> = vec![Value::from(new_label.to_owned())];
         let result = self.client.call("set_label", args);
         result.as_bool().unwrap()
     }
@@ -64,13 +64,13 @@ impl<'a> ClassifierClient<'a> {
     }
 
     pub fn delete_label(&mut self, target_label: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(target_label.to_owned())];
+        let args: Vec<Value> = vec![Value::from(target_label.to_owned())];
         let result = self.client.call("delete_label", args);
         result.as_bool().unwrap()
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -82,7 +82,7 @@ impl<'a> ClassifierClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -134,7 +134,7 @@ impl<'a> ClassifierClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

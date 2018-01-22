@@ -1,4 +1,4 @@
-// This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from weight.idl(0.9.0-24-gda613834) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -44,7 +44,7 @@ impl<'a> WeightClient<'a> {
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -56,7 +56,7 @@ impl<'a> WeightClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }

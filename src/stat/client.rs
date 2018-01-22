@@ -1,4 +1,4 @@
-// This file is auto-generated from stat.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from stat.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -18,45 +18,45 @@ impl<'a> StatClient<'a> {
     }
 
     pub fn push(&mut self, key: String, value: f64) -> bool {
-        let args: Vec<Value> = vec![Value::String(key.to_owned()), Value::F64(value)];
+        let args: Vec<Value> = vec![Value::from(key.to_owned()), Value::from(value)];
         let result = self.client.call("push", args);
         result.as_bool().unwrap()
     }
 
     pub fn sum(&mut self, key: String) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned())];
+        let args: Vec<Value> = vec![Value::from(key.to_owned())];
         let result = self.client.call("sum", args);
         result.as_f64().unwrap()
     }
 
     pub fn stddev(&mut self, key: String) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned())];
+        let args: Vec<Value> = vec![Value::from(key.to_owned())];
         let result = self.client.call("stddev", args);
         result.as_f64().unwrap()
     }
 
     pub fn max(&mut self, key: String) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned())];
+        let args: Vec<Value> = vec![Value::from(key.to_owned())];
         let result = self.client.call("max", args);
         result.as_f64().unwrap()
     }
 
     pub fn min(&mut self, key: String) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned())];
+        let args: Vec<Value> = vec![Value::from(key.to_owned())];
         let result = self.client.call("min", args);
         result.as_f64().unwrap()
     }
 
     pub fn entropy(&mut self, key: String) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned())];
+        let args: Vec<Value> = vec![Value::from(key.to_owned())];
         let result = self.client.call("entropy", args);
         result.as_f64().unwrap()
     }
 
     pub fn moment(&mut self, key: String, degree: i64, center: f64) -> f64 {
-        let args: Vec<Value> = vec![Value::String(key.to_owned()),
-                                    Value::I64(degree),
-                                    Value::F64(center)];
+        let args: Vec<Value> = vec![Value::from(key.to_owned()),
+                                    Value::from(degree),
+                                    Value::from(center)];
         let result = self.client.call("moment", args);
         result.as_f64().unwrap()
     }
@@ -68,7 +68,7 @@ impl<'a> StatClient<'a> {
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -80,7 +80,7 @@ impl<'a> StatClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -132,7 +132,7 @@ impl<'a> StatClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

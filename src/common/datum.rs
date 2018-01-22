@@ -43,13 +43,13 @@ impl Datum {
         let mut n: Vec<Value> = vec![];
         let mut b: Vec<Value> = vec![];
         for v in self.string_values.iter() {
-            s.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::String(v.1.to_owned())]));
+            s.push(Value::Array(vec![Value::from(v.0.to_owned()), Value::from(v.1.to_owned())]));
         }
         for v in self.num_values.iter() {
-            n.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::F64(v.1)]));
+            n.push(Value::Array(vec![Value::from(v.0.to_owned()), Value::from(v.1)]));
         }
         for v in self.binary_values.iter() {
-            b.push(Value::Array(vec![Value::String(v.0.to_owned()), Value::Binary(v.1.to_owned())]));
+            b.push(Value::Array(vec![Value::from(v.0.to_owned()), Value::Binary(v.1.to_owned())]));
         }
         datum.push(Value::Array(s));
         datum.push(Value::Array(n));

@@ -1,4 +1,4 @@
-// This file is auto-generated from anomaly.idl(0.9.0-26-g051b3019) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from anomaly.idl(1.0.0-127-g2cf96c38) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -18,7 +18,7 @@ impl<'a> AnomalyClient<'a> {
     }
 
     pub fn clear_row(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(id.to_owned())];
         let result = self.client.call("clear_row", args);
         result.as_bool().unwrap()
     }
@@ -29,14 +29,24 @@ impl<'a> AnomalyClient<'a> {
         IdWithScore::from_msgpack_value(result.clone())
     }
 
+    pub fn add_bulk(&mut self, data: Vec<Datum>) -> Vec<String> {
+        let args: Vec<Value> = vec![Value::Array(data.iter().map(|x| x.to_msgpack_value()).collect())];
+        let result = self.client.call("add_bulk", args);
+        result.as_array()
+              .unwrap()
+              .iter()
+              .map(|x| x.as_str().unwrap().to_string())
+              .collect()
+    }
+
     pub fn update(&mut self, id: String, row: Datum) -> f64 {
-        let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::from(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("update", args);
         result.as_f64().unwrap()
     }
 
     pub fn overwrite(&mut self, id: String, row: Datum) -> f64 {
-        let args: Vec<Value> = vec![Value::String(id.to_owned()), row.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::from(id.to_owned()), row.to_msgpack_value()];
         let result = self.client.call("overwrite", args);
         result.as_f64().unwrap()
     }
@@ -64,7 +74,7 @@ impl<'a> AnomalyClient<'a> {
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -76,7 +86,7 @@ impl<'a> AnomalyClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -128,7 +138,7 @@ impl<'a> AnomalyClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

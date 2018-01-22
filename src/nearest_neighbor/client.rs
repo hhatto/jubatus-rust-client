@@ -1,4 +1,4 @@
-// This file is auto-generated from nearest_neighbor.idl(0.8.2-20-g8e4dc3b5) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from nearest_neighbor.idl(0.8.2-20-g8e4dc3b5) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -24,13 +24,13 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn set_row(&mut self, id: String, d: Datum) -> bool {
-        let args: Vec<Value> = vec![Value::String(id.to_owned()), d.to_msgpack_value()];
+        let args: Vec<Value> = vec![Value::from(id.to_owned()), d.to_msgpack_value()];
         let result = self.client.call("set_row", args);
         result.as_bool().unwrap()
     }
 
     pub fn neighbor_row_from_id(&mut self, id: String, size: u64) -> Vec<IdWithScore> {
-        let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::U64(size)];
+        let args: Vec<Value> = vec![Value::from(id.to_owned()), Value::from(size)];
         let result = self.client.call("neighbor_row_from_id", args);
         result.as_array()
               .unwrap()
@@ -40,7 +40,7 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn neighbor_row_from_datum(&mut self, query: Datum, size: u64) -> Vec<IdWithScore> {
-        let args: Vec<Value> = vec![query.to_msgpack_value(), Value::U64(size)];
+        let args: Vec<Value> = vec![query.to_msgpack_value(), Value::from(size)];
         let result = self.client.call("neighbor_row_from_datum", args);
         result.as_array()
               .unwrap()
@@ -50,7 +50,7 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn similar_row_from_id(&mut self, id: String, ret_num: u64) -> Vec<IdWithScore> {
-        let args: Vec<Value> = vec![Value::String(id.to_owned()), Value::U64(ret_num)];
+        let args: Vec<Value> = vec![Value::from(id.to_owned()), Value::from(ret_num)];
         let result = self.client.call("similar_row_from_id", args);
         result.as_array()
               .unwrap()
@@ -60,7 +60,7 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn similar_row_from_datum(&mut self, query: Datum, ret_num: u64) -> Vec<IdWithScore> {
-        let args: Vec<Value> = vec![query.to_msgpack_value(), Value::U64(ret_num)];
+        let args: Vec<Value> = vec![query.to_msgpack_value(), Value::from(ret_num)];
         let result = self.client.call("similar_row_from_datum", args);
         result.as_array()
               .unwrap()
@@ -80,7 +80,7 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -92,7 +92,7 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -144,7 +144,7 @@ impl<'a> NearestNeighborClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

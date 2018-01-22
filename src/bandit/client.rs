@@ -1,4 +1,4 @@
-// This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from bandit.idl(0.7.2-79-g2db27d79) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -18,33 +18,33 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn register_arm(&mut self, arm_id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(arm_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(arm_id.to_owned())];
         let result = self.client.call("register_arm", args);
         result.as_bool().unwrap()
     }
 
     pub fn delete_arm(&mut self, arm_id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(arm_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(arm_id.to_owned())];
         let result = self.client.call("delete_arm", args);
         result.as_bool().unwrap()
     }
 
     pub fn select_arm(&mut self, player_id: String) -> String {
-        let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(player_id.to_owned())];
         let result = self.client.call("select_arm", args);
         result.as_str().unwrap().to_string()
     }
 
     pub fn register_reward(&mut self, player_id: String, arm_id: String, reward: f64) -> bool {
-        let args: Vec<Value> = vec![Value::String(player_id.to_owned()),
-                                    Value::String(arm_id.to_owned()),
-                                    Value::F64(reward)];
+        let args: Vec<Value> = vec![Value::from(player_id.to_owned()),
+                                    Value::from(arm_id.to_owned()),
+                                    Value::from(reward)];
         let result = self.client.call("register_reward", args);
         result.as_bool().unwrap()
     }
 
     pub fn get_arm_info(&mut self, player_id: String) -> HashMap<String, ArmInfo> {
-        let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(player_id.to_owned())];
         let result = self.client.call("get_arm_info", args);
         result.as_map()
               .unwrap()
@@ -57,7 +57,7 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn reset(&mut self, player_id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(player_id.to_owned())];
+        let args: Vec<Value> = vec![Value::from(player_id.to_owned())];
         let result = self.client.call("reset", args);
         result.as_bool().unwrap()
     }
@@ -69,7 +69,7 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn save(&mut self, id: String) -> HashMap<String, String> {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("save", args);
         let mut ret: HashMap<String, String> = HashMap::new();
         for r in result.as_map().unwrap().iter() {
@@ -81,7 +81,7 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn load(&mut self, id: String) -> bool {
-        let args: Vec<Value> = vec![Value::String(id)];
+        let args: Vec<Value> = vec![Value::from(id)];
         let result = self.client.call("load", args);
         result.as_bool().unwrap()
     }
@@ -133,7 +133,7 @@ impl<'a> BanditClient<'a> {
     }
 
     pub fn get_name(&self) -> &str {
-        return self.client.name;
+        self.client.name
     }
 
     pub fn set_name(&mut self, new_name: &'a str) {

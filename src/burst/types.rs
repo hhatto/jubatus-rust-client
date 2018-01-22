@@ -1,4 +1,4 @@
-// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from burst.idl(0.6.4-96-g66ed74d5) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -14,9 +14,9 @@ pub struct KeywordWithParams {
 
 impl KeywordWithParams {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.keyword.to_owned()),
-                          Value::F64(self.scaling_param),
-                          Value::F64(self.gamma)])
+        Value::Array(vec![Value::from(self.keyword.to_owned()),
+                          Value::from(self.scaling_param),
+                          Value::from(self.gamma)])
     }
 
     pub fn from_msgpack_value(data: Value) -> KeywordWithParams {
@@ -36,9 +36,9 @@ pub struct Batch {
 
 impl Batch {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::I64(self.all_data_count),
-                          Value::I64(self.relevant_data_count),
-                          Value::F64(self.burst_weight)])
+        Value::Array(vec![Value::from(self.all_data_count),
+                          Value::from(self.relevant_data_count),
+                          Value::from(self.burst_weight)])
     }
 
     pub fn from_msgpack_value(data: Value) -> Batch {
@@ -57,7 +57,7 @@ pub struct Window {
 
 impl Window {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::F64(self.start_pos),
+        Value::Array(vec![Value::from(self.start_pos),
                           Value::Array(self.batches.iter().map(|x| x.to_msgpack_value()).collect())])
     }
 
@@ -79,7 +79,7 @@ pub struct Document {
 
 impl Document {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::F64(self.pos), Value::String(self.text.to_owned())])
+        Value::Array(vec![Value::from(self.pos), Value::from(self.text.to_owned())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Document {

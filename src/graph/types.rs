@@ -1,4 +1,4 @@
-// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from graph.idl(0.6.4-33-gcc8d7ca9) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -15,10 +15,10 @@ pub struct Node {
 impl Node {
     pub fn to_msgpack_value(&self) -> Value {
         Value::Array(vec![Value::Map(self.property.iter()
-                                         .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
+                                         .map(|(k, v)| (Value::from(k.to_owned()), Value::from(v.to_owned())))
                                          .collect()),
-                          Value::Array(self.in_edges.iter().map(|x| Value::U64(*x)).collect()),
-                          Value::Array(self.out_edges.iter().map(|x| Value::U64(*x)).collect())])
+                          Value::Array(self.in_edges.iter().map(|x| Value::from(*x)).collect()),
+                          Value::Array(self.out_edges.iter().map(|x| Value::from(*x)).collect())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Node {
@@ -49,8 +49,8 @@ pub struct Query {
 
 impl Query {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.from_id.to_owned()),
-                          Value::String(self.to_id.to_owned())])
+        Value::Array(vec![Value::from(self.from_id.to_owned()),
+                          Value::from(self.to_id.to_owned())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Query {
@@ -99,10 +99,10 @@ pub struct Edge {
 impl Edge {
     pub fn to_msgpack_value(&self) -> Value {
         Value::Array(vec![Value::Map(self.property.iter()
-                                         .map(|(k, v)| (Value::String(k.to_owned()), Value::String(v.to_owned())))
+                                         .map(|(k, v)| (Value::from(k.to_owned()), Value::from(v.to_owned())))
                                          .collect()),
-                          Value::String(self.source.to_owned()),
-                          Value::String(self.target.to_owned())])
+                          Value::from(self.source.to_owned()),
+                          Value::from(self.target.to_owned())])
     }
 
     pub fn from_msgpack_value(data: Value) -> Edge {
@@ -129,9 +129,9 @@ pub struct ShortestPathQuery {
 
 impl ShortestPathQuery {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.source.to_owned()),
-                          Value::String(self.target.to_owned()),
-                          Value::U64(self.max_hop),
+        Value::Array(vec![Value::from(self.source.to_owned()),
+                          Value::from(self.target.to_owned()),
+                          Value::from(self.max_hop),
                           self.query.to_msgpack_value()])
     }
 

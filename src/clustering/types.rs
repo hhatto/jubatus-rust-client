@@ -1,4 +1,4 @@
-// This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 1.0.0-27-ge6a9293f/support-rust-client-for-jenerator
+// This file is auto-generated from clustering.idl(0.9.4-18-g4935b2bd) with jenerator version 1.0.0-76-g95eed232/support-rust-client-for-jenerator
 // *** DO NOT EDIT ***
 
 use std::collections::HashMap;
@@ -13,7 +13,7 @@ pub struct WeightedDatum {
 
 impl WeightedDatum {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::F64(self.weight), self.point.to_msgpack_value()])
+        Value::Array(vec![Value::from(self.weight), self.point.to_msgpack_value()])
     }
 
     pub fn from_msgpack_value(data: Value) -> WeightedDatum {
@@ -31,7 +31,7 @@ pub struct IndexedPoint {
 
 impl IndexedPoint {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::String(self.id.to_owned()),
+        Value::Array(vec![Value::from(self.id.to_owned()),
                           self.point.to_msgpack_value()])
     }
 
@@ -50,7 +50,7 @@ pub struct WeightedIndex {
 
 impl WeightedIndex {
     pub fn to_msgpack_value(&self) -> Value {
-        Value::Array(vec![Value::F64(self.weight), Value::String(self.id.to_owned())])
+        Value::Array(vec![Value::from(self.weight), Value::from(self.id.to_owned())])
     }
 
     pub fn from_msgpack_value(data: Value) -> WeightedIndex {

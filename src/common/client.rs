@@ -13,7 +13,7 @@ impl<'a> Client<'a> {
     }
 
     pub fn call(&mut self, method: &str, arg: Vec<Value>) -> Value {
-        let mut v: Vec<Value> = vec![Value::String(self.name.to_string())];
+        let mut v: Vec<Value> = vec![Value::from(self.name.to_string())];
         for x in arg {
             v.push(x);
         }

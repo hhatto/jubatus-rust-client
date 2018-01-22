@@ -1,5 +1,4 @@
 extern crate msgpack_rpc as rpc;
-extern crate rmp as msgpack;
 extern crate rmpv;
 
 pub mod common;
