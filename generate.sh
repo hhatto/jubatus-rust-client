@@ -35,5 +35,5 @@ popd
 
 rm -rf "${JUBATUS_DIR}"
 
-find .| grep "\.rs$" | xargs rustfmt --config-path ./rustfmt.toml
+find .| grep "\.rs$" | xargs cargo +nightly fmt -- --config-path ./rustfmt.toml
 find .| grep "\.rs.bk$" | xargs rm
